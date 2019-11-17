@@ -15,6 +15,25 @@ class Blockchain {
 		this.chain.push(newBlock);
 	}
 
+	replaceChain(chain) {
+		if (chain.length <= this.chain.length) {
+			console.error(
+				'The incoming chain must be longer to replace the current chain.'
+			);
+			return;
+		}
+
+		if (!Blockchain.isValidChain(chain)) {
+			console.error(
+				'The incoming chain at first must be valid to be able to replace it succesfully'
+			);
+			return;
+		}
+
+		console.log('replacing chain with', chain);
+		this.chain = chain;
+	}
+
 	static isValidChain(chain) {
 		if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis()))
 			return false;
