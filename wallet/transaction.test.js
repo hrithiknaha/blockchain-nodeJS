@@ -76,7 +76,7 @@ describe('Transaction', () => {
 		});
 
 		describe('when the transaction is invalid', () => {
-			it('and the transaction outputMap value is invalid', () => {
+			describe('and the transaction outputMap value is invalid', () => {
 				it('returns false and logs an error', () => {
 					transaction.outputMap[senderWallet.publicKey] = 9999999;
 
@@ -85,7 +85,7 @@ describe('Transaction', () => {
 				});
 			});
 
-			it('and the transaction input signature is invalid', () => {
+			describe('and the transaction input signature is invalid', () => {
 				it('returns false and logs an error', () => {
 					transaction.input.signature = new Wallet().sign('data');
 
