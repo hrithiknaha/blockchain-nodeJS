@@ -103,7 +103,7 @@ describe('Transaction', () => {
 			originalSignature = transaction.input.signature;
 			originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
 			nextRecipient = 'next-reciepient';
-			nectAmount = 50;
+			nextAmount = 50;
 
 			transaction.update({
 				senderWallet,
