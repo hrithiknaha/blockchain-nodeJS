@@ -131,9 +131,7 @@ describe('Transaction', () => {
 		});
 
 		it('re-signs the transaction', () => {
-			expect(transaction.input.signature)
-				.not()
-				.toEqual(originalSignature);
+			expect(transaction.input.signature).not.toEqual(originalSignature);
 		});
 	});
 });
