@@ -13,9 +13,10 @@ const CHANNELS = {
 };
 
 class PubSub {
-	constructor({ blockchain, transactionPool }) {
+	constructor({ blockchain, transactionPool, wallet }) {
 		this.blockchain = blockchain;
 		this.transactionPool = transactionPool;
+		this.wallet = wallet;
 
 		this.pubnub = new PubNub(credentials);
 
@@ -40,7 +41,13 @@ class PubSub {
 						this.blockchain.replaceChain(parsedMessage);
 						break;
 					case CHANNELS.TRANSACTION:
-						this.transactionPool.setTransaction(parsedMessage);
+						if (
+							!this.transactionPool.existingTransaction({
+								inputAddress: this.wallet.publicKey
+							})
+						) {
+							this.transactionPool.setTransaction(parsedMessage);
+						}
 						break;
 					default:
 						return;
